@@ -3,7 +3,7 @@
 #include <SDL2/SDL_mixer.h>
 #include <iostream>
 
-Mix_Music* music = fopen("Practice Soundtrack.mp3", "rb");
+Mix_Music* music = nullptr;
 Uint32 musicStartTime = 0; // ms timestamp when music starts
 
 // Start music
@@ -48,6 +48,23 @@ void stopAudio() {
     if (music) Mix_FreeMusic(music);
     Mix_CloseAudio();
     SDL_Quit();
+}
+
+//returns variance between expected and actual beat timing
+int beatVariance(const bool* chart, size_t chartLength, Uint32 chartBegin) {
+    Uint32 elapsedMs = getMusicTime();
+    if (elapsedMs == 0) return -1;
+
+    // Convert ms to beats (120 BPM → 1 beat = 500 ms)
+    double beats = elapsedMs / 500.0;
+    int beatIndex = static_cast<int>(round(beats));
+
+    if (beatIndex < 0 || beatIndex >= chartLength) return -1;
+    if (!chart[beatIndex]) return -1;
+
+    // Return absolute variance in ms between expected beat and actual elapsed time
+    int expectedMs = beatIndex * 500;
+    return static_cast<int>(abs(static_cast<int>(elapsedMs) - expectedMs));
 }
 
 // Get elapsed music time in milliseconds
