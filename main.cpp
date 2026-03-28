@@ -1,6 +1,7 @@
 #include <ncurses.h>
 #include <chrono>
 #include <string>
+#include <music.h>
 
 struct Player {
     int current_health;
