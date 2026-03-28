@@ -40,9 +40,21 @@ int main() {
 
     refresh();
 
+    int uiMode = 0; // 0 buttons, 1 rhythm
+
     int ch = 0;
     while ((ch = getch()) != 'q'){
-        if (ch == 32) { //32 is space
+
+        if(uiMode == 0) {
+            // make buttons
+            if(ch == (1 + '0')) {}
+            if(ch == (2 + '0')) {}
+            if(ch == (3 + '0')) {}
+            if(ch == (4 + '0')) {}
+
+        }
+
+        if ((ch == 32) && (uiMode == 1)) { //32 is space
             break;
         }
     }
