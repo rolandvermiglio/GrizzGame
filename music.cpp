@@ -1,8 +1,9 @@
+#include "music.h"
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 #include <iostream>
 
-Mix_Music* music = nullptr;
+Mix_Music* music = fopen("Practice Soundtrack.mp3", "rb");
 Uint32 musicStartTime = 0; // ms timestamp when music starts
 
 // Start music
