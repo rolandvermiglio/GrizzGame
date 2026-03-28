@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/GrizzGame.dir/main.cpp.o -o GrizzGame  -lncurses -ltinfo 
