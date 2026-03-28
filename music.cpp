@@ -55,15 +55,15 @@ int beatVariance(const bool* chart, size_t chartLength, Uint32 chartBegin) {
     Uint32 elapsedMs = getMusicTime();
     if (elapsedMs == 0) return -1;
 
-    // Convert ms to beats (120 BPM → 1 beat = 500 ms)
-    double beats = elapsedMs / 500.0;
+    // Convert ms to beats (240 BPM → 1 beat = 250 ms)
+    double beats = elapsedMs / 250.0;
     int beatIndex = static_cast<int>(round(beats));
 
     if (beatIndex < 0 || beatIndex >= chartLength) return -1;
     if (!chart[beatIndex]) return -1;
 
     // Return absolute variance in ms between expected beat and actual elapsed time
-    int expectedMs = beatIndex * 500;
+    int expectedMs = beatIndex * 250;
     return static_cast<int>(abs(static_cast<int>(elapsedMs) - expectedMs));
 }
 
